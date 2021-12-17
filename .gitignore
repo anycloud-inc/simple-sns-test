@@ -1,0 +1,12 @@
+.docker-sync
+.DS_STORE
+.unison*
+.vscode
+node_modules/
+dist/
+tmp/
+*.log
+.repl_history
+
+# 環境変数
+.env
