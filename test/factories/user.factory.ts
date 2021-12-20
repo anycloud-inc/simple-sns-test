@@ -1,7 +1,8 @@
+import { User } from '../entities/user.entity'
 import generateHash from '../lib/generate-hash'
 
 export const userFactory = {
-  create() {
+  create(): User {
     const hash = generateHash()
     return {
       name: 'test',

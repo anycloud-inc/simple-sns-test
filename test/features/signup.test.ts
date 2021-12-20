@@ -12,28 +12,37 @@ export async function signup() {
 async function createUser() {
   const user = userFactory.create()
 
-  // パスワードが短いケース
   let response = await accountRepository.create({
     ...user,
     password: '1234567',
   })
-  assert.equal(response.status, 422)
+  assert.equal(
+    response.status,
+    422,
+    'パスワードが八文字以上だったら422エラーになるべき'
+  )
 
-  // メールアドレスのフォーマットが不正なケース
   response = await accountRepository.create({
     ...user,
     email: 's.kazutaka55555gmail.com',
   })
-  assert.equal(response.status, 422)
+  assert.equal(
+    response.status,
+    422,
+    'メールアドレスが不正なフォーマットの場合422エラーになるべき'
+  )
 
-  // きちんと作成できるケース
   response = await accountRepository.create(user)
-  assert.equal(response.status, 200)
+  assert.equal(
+    response.status,
+    200,
+    '正しい値なので、きちんとデータが作成され200が返ってくるべき'
+  )
 
-  // 同じメールアドレスのユーザーがいるケース
   response = await accountRepository.create(user)
-  assert.equal(response.status, 422)
+  assert.equal(
+    response.status,
+    422,
+    '同じアドレスのユーザーがいる場合422エラーになるべき'
+  )
 }
-
-// TODO
-async function signin() {}
