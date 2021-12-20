@@ -1,4 +1,4 @@
-import api from '../api'
+import api from '../lib/api'
 
 interface CreateParams {
   name: string
@@ -7,7 +7,6 @@ interface CreateParams {
 }
 export const accountRepository = {
   async create(params: CreateParams) {
-    const { data } = await api.post('/account', { ...params })
-    return data.user
+    return await api.post('/account', { ...params })
   },
 }

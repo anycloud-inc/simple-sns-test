@@ -1,6 +1,10 @@
 require('dotenv').config()
-import { createAccount } from './account/create.test'
+import { signup } from './features/signup.test'
 
-Promise.resolve(console.log('start test'))
-  .then(() => console.log('create user'))
-  .then(createAccount)
+async function run() {
+  console.log('start test')
+  console.log('start signup test')
+  await signup()
+}
+
+run()
