@@ -19,7 +19,7 @@ async function createUser() {
   assert.equal(
     response.status,
     422,
-    'パスワードが八文字以上だったら422エラーになるべき'
+    'パスワードが7文字以下だったら422エラーになるべき'
   )
 
   response = await accountRepository.create({
@@ -33,11 +33,7 @@ async function createUser() {
   )
 
   response = await accountRepository.create(user)
-  assert.equal(
-    response.status,
-    200,
-    '正しい値なので、きちんとデータが作成され200が返ってくるべき'
-  )
+  assert.equal(response.status, 200, '正しい値なので、200が返ってくるべき')
 
   response = await accountRepository.create(user)
   assert.equal(
