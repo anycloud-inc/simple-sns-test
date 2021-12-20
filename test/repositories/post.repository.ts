@@ -1,13 +1,11 @@
 import api from '../lib/api'
 
 export const postRepository = {
-  async create(token: string, body: string) {
-    api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  async create(body: string) {
     return await api.post('/posts', { post: { body } })
   },
 
-  async find(token: string) {
-    api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  async find() {
     return await api.get('/posts')
   },
 }

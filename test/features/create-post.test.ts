@@ -1,22 +1,20 @@
 import * as assert from 'power-assert'
 import { Post } from '../entities/post.entity'
-import { User } from '../entities/user.entity'
-import { userFactory } from '../factories/user.factory'
-import { accountRepository } from '../repositories/account.repository'
+import { signup } from '../lib/test-helper'
 import { postRepository } from '../repositories/post.repository'
 
 export async function createPost() {
   console.log('create post')
-  const { user, token } = await signup()
+  const user = await signup()
 
-  let posts = await findPosts(token)
+  let posts = await findPosts()
   const latestPostId = posts[0].id
 
   const body = 'test post'
-  const response = await postRepository.create(token, body)
+  const response = await postRepository.create(body)
   assert.equal(response.status, 200, '正しい値なので、200が返ってくるべき')
 
-  posts = await findPosts(token)
+  posts = await findPosts()
   assert(
     latestPostId < posts[0].id,
     'create前と後で、最新のpostのidが増えているべき'
@@ -27,12 +25,7 @@ export async function createPost() {
   )
 }
 
-async function signup(): Promise<{ user: User; token: string }> {
-  const response = await accountRepository.create(userFactory.create())
-  return { user: response.data.user, token: response.data.token }
-}
-
-async function findPosts(token: string): Promise<Post[]> {
-  const response = await postRepository.find(token)
+async function findPosts(): Promise<Post[]> {
+  const response = await postRepository.find()
   return response.data.posts
 }
