@@ -6,12 +6,13 @@ import * as fs from 'fs'
 
 export async function updateProfile() {
   console.log('update profile')
-  await updateProfle()
+  await _updateProfile()
+
   console.log('update profile icon')
-  await updateIconImage()
+  await _updateIconImage()
 }
 
-async function updateProfle() {
+async function _updateProfile() {
   await signup()
   const name = 'new test name'
   let response = await accountRepository.updateProfile({
@@ -41,7 +42,7 @@ async function updateProfle() {
   )
 }
 
-async function updateIconImage() {
+async function _updateIconImage() {
   await signup()
   const data = fs.createReadStream('test/images/app_icon.png')
   let response = await accountRepository.updateIconImage(data)
