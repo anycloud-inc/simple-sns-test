@@ -26,7 +26,7 @@ async function createUser(user: User) {
 
   response = await accountRepository.create({
     ...user,
-    email: 's.kazutaka55555gmail.com',
+    email: 'simple-snsgmail.com',
   })
   assert.equal(
     response.status,
@@ -47,7 +47,7 @@ async function createUser(user: User) {
 
 async function signin(user: User) {
   let response = await accountRepository.signin({
-    email: 's.kazutaka55555gmail.com',
+    email: 'simple-snsgmail.com',
     password: '1234567',
   })
   assert.equal(
