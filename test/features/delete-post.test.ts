@@ -25,8 +25,8 @@ export async function deletePost() {
   )
 
   post = await createPost()
-  await signup()
 
+  await signup()
   response = await postRepository.delete(post.id)
   assert.equal(
     response.status,
