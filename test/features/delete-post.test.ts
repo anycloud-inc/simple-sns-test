@@ -5,7 +5,7 @@ import { postRepository } from '../repositories/post.repository'
 export async function deletePost() {
   console.log('delte post')
   await signup()
-  const post = await createPost()
+  let post = await createPost()
 
   let response = await postRepository.delete(post.id)
   assert.equal(response.status, 200, '正しい値なので、200が返ってくるべき')
@@ -22,5 +22,15 @@ export async function deletePost() {
     response.status,
     404,
     '削除したPostをもう一度削除しようとしてるので、404になるべき'
+  )
+
+  post = await createPost()
+  await signup()
+
+  response = await postRepository.delete(post.id)
+  assert.equal(
+    response.status,
+    404,
+    '他のユーザーのPostを削除しようとしてるので、404になるべき'
   )
 }
