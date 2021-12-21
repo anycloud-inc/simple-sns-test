@@ -17,7 +17,7 @@ export async function createMessage() {
   let messages = await _findMessages(room.id)
   assert(
     messages[0].content === content && messages[0].userId === user2.id,
-    'リクエストで投げたbodyと同じbody、tokenと紐づいたuserIdが入った最新のpostがあるべき'
+    '作成したメッセージが、ログイン中のユーザーに作られた最新のメッセージになるべき'
   )
 
   await signup()
