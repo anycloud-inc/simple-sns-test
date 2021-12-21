@@ -7,13 +7,13 @@ export async function signup() {
   const user = userFactory.create()
 
   console.log('create user')
-  await createUser(user)
+  await _createUser(user)
 
   console.log('signin')
-  await signin(user)
+  await _signin(user)
 }
 
-async function createUser(user: User) {
+async function _createUser(user: User) {
   let response = await accountRepository.create({
     ...user,
     password: '1234567',
@@ -26,7 +26,7 @@ async function createUser(user: User) {
 
   response = await accountRepository.create({
     ...user,
-    email: 's.kazutaka55555gmail.com',
+    email: 'simple-snsgmail.com',
   })
   assert.equal(
     response.status,
@@ -45,9 +45,9 @@ async function createUser(user: User) {
   )
 }
 
-async function signin(user: User) {
+async function _signin(user: User) {
   let response = await accountRepository.signin({
-    email: 's.kazutaka55555gmail.com',
+    email: 'simple-snsgmail.com',
     password: '1234567',
   })
   assert.equal(

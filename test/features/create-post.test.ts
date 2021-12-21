@@ -7,14 +7,14 @@ export async function createPost() {
   console.log('create post')
   const user = await signup()
 
-  let posts = await findPosts()
+  let posts = await _findPosts()
   const latestPostId = posts[0].id
 
   const body = 'test post'
   const response = await postRepository.create(body)
   assert.equal(response.status, 200, '正しい値なので、200が返ってくるべき')
 
-  posts = await findPosts()
+  posts = await _findPosts()
   assert(
     latestPostId < posts[0].id,
     'create前と後で、最新のpostのidが増えているべき'
@@ -25,7 +25,7 @@ export async function createPost() {
   )
 }
 
-async function findPosts(): Promise<Post[]> {
+async function _findPosts(): Promise<Post[]> {
   const response = await postRepository.find()
   return response.data.posts
 }
