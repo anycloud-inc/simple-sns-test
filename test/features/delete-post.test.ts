@@ -4,7 +4,7 @@ import { postRepository } from '../repositories/post.repository'
 
 export async function deletePost() {
   console.log('delte post')
-  const user = await signup()
+  await signup()
   const post = await createPost()
 
   let response = await postRepository.delete(post.id)
