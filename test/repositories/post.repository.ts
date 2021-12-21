@@ -8,4 +8,12 @@ export const postRepository = {
   async find() {
     return await api.get('/posts')
   },
+
+  async findOne(id: number) {
+    return await api.get(`/posts/${id}`)
+  },
+
+  async delete(id: number) {
+    return await api.delete(`/posts/${id}`)
+  },
 }

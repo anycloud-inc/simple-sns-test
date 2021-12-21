@@ -1,5 +1,6 @@
 require('dotenv').config()
 import { createPost } from './features/create-post.test'
+import { deletePost } from './features/delete-post.test'
 import { signup } from './features/signup.test'
 
 async function run() {
@@ -8,6 +9,8 @@ async function run() {
   await signup()
   console.log('start create post test')
   await createPost()
+  console.log('start delete post test')
+  await deletePost()
 }
 
 run()
