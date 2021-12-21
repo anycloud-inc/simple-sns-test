@@ -1,4 +1,3 @@
-import * as qs from 'qs'
 import api from '../lib/api'
 import { PaginationParams } from '../lib/pagination'
 
@@ -8,10 +7,8 @@ export const postRepository = {
   },
 
   async find(pagination?: PaginationParams) {
-    const paramsSerializer = (params: any) => qs.stringify(params)
     return await api.get('/posts', {
       params: { pagination },
-      paramsSerializer,
     })
   },
 
