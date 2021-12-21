@@ -1,17 +1,19 @@
 import * as assert from 'power-assert'
+import { User } from '../entities/user.entity'
 import { userFactory } from '../factories/user.factory'
 import { accountRepository } from '../repositories/account.repository'
 
 export async function signup() {
-  console.log('create user')
-  await createUser()
-
-  console.log('signin')
-}
-
-async function createUser() {
   const user = userFactory.create()
 
+  console.log('create user')
+  await createUser(user)
+
+  console.log('signin')
+  await signin(user)
+}
+
+async function createUser(user: User) {
   let response = await accountRepository.create({
     ...user,
     password: '1234567',
@@ -41,4 +43,23 @@ async function createUser() {
     422,
     '同じアドレスのユーザーがいる場合422エラーになるべき'
   )
+}
+
+async function signin(user: User) {
+  let response = await accountRepository.signin({
+    email: 's.kazutaka55555gmail.com',
+    password: '1234567',
+  })
+  assert.equal(
+    response.status,
+    400,
+    'メールアドレス、パスワードが間違っているので400が返ってくるべき'
+  )
+
+  const { email, password } = user
+  response = await accountRepository.signin({
+    email,
+    password,
+  })
+  assert.equal(response.status, 200, '正しい値なので、200が返ってくるべき')
 }
