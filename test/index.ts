@@ -11,14 +11,14 @@ async function run() {
   console.log('start signup test')
   await signup()
 
+  console.log('start update profile test')
+  await updateProfile()
+
   console.log('start create post test')
   await createPost()
 
   console.log('start delete post test')
   await deletePost()
-
-  console.log('start update profile test')
-  await updateProfile()
 
   console.log('start find posts test')
   await findPosts()
