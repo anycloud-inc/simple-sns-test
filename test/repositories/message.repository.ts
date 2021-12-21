@@ -6,6 +6,10 @@ export const messageRepository = {
     return await api.post('/messages', { roomId, content })
   },
 
+  async createViaPost(postId: number, content: string) {
+    return await api.post('/messages', { postId, content })
+  },
+
   async find(roomId: string, pagination?: PaginationParams) {
     return await api.get('/messages', {
       params: {
