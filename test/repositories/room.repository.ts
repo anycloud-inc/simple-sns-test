@@ -8,4 +8,12 @@ export const roomRepository = {
   async find() {
     return await api.get('/rooms')
   },
+
+  async findOne(id: string) {
+    return await api.get(`/rooms/${id}`)
+  },
+
+  async markAsRead(id: string) {
+    return await api.patch(`/rooms/${id}/read`)
+  },
 }
