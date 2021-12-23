@@ -13,6 +13,9 @@ export async function createRoom() {
   assert.equal(response.status, 200, '正しい値なので、200が返ってくるべき')
   await createMessage(response.data.room.id)
 
+  const roomId = response.data.room.id
+  await createMessage(roomId)
+
   let rooms = await _findRooms()
   assert(
     _stringifyUserIds(rooms[0]?.roomUsers.map(item => item.userId)) ==
