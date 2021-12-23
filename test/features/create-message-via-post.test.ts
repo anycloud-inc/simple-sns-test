@@ -9,7 +9,7 @@ export async function createMessageViaPost() {
   const user1 = await signup()
   const post = await createPost()
   const user2 = await signup()
-  const room = await createRoom([user1.id, user2.id])
+  const room = await createRoom([user1.id!])
 
   const content = 'test message'
   let response = await messageRepository.createViaPost(post.id, content)

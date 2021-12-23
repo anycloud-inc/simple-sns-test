@@ -9,8 +9,8 @@ export async function findMessages() {
 
   await signup()
   const user1 = await signup()
-  const user2 = await signup()
-  const room = await createRoom([user1.id, user2.id])
+  await signup()
+  const room = await createRoom([user1.id!])
   const message1 = await createMessage(room.id)
   const message2 = await createMessage(room.id)
 

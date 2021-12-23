@@ -8,7 +8,7 @@ export async function createMessage() {
 
   const user1 = await signup()
   const user2 = await signup()
-  const room = await createRoom([user1.id, user2.id])
+  const room = await createRoom([user1.id!])
 
   const content = 'test message'
   let response = await messageRepository.create(room.id, content)
@@ -24,7 +24,7 @@ export async function createMessage() {
   response = await messageRepository.create(room.id, content)
   assert.equal(
     response.status,
-    400,
+    422,
     'roomに入ってないユーザーのメッセージを作ろうとしているので、400になるべき'
   )
 }
