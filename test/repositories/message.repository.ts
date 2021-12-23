@@ -7,7 +7,7 @@ export const messageRepository = {
   },
 
   async createViaPost(postId: number, content: string) {
-    return await api.post('/messages', { postId, content })
+    return await api.post('/messages/via_post', { postId, content })
   },
 
   async find(roomId: string, pagination?: PaginationParams) {

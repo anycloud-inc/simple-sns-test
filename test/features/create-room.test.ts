@@ -11,13 +11,14 @@ export async function createRoom() {
 
   let response = await roomRepository.create([user1.id!])
   assert.equal(response.status, 200, '正しい値なので、200が返ってくるべき')
+  await createMessage(response.data.room.id)
 
   const roomId = response.data.room.id
   await createMessage(roomId)
 
   let rooms = await _findRooms()
   assert(
-    _stringifyUserIds(rooms[0].roomUsers.map(item => item.userId)) ==
+    _stringifyUserIds(rooms[0]?.roomUsers.map(item => item.userId)) ==
       _stringifyUserIds([user1.id!, user2.id!]),
     '作成時に指定したユーザー同士のRoomが返ってくるべき'
   )
