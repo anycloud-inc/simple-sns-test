@@ -6,7 +6,6 @@ import { signup } from './features/signup.test'
 import { updateProfile } from './features/update-profile.test'
 import { createRoom } from './features/create-room.test'
 import { findRooms } from './features/find-rooms.test'
-import { markAsRead } from './features/mark-as-read.test'
 import { createMessage } from './features/create-message.test'
 import { createMessageViaPost } from './features/create-message-via-post.test'
 import { findMessages } from './features/find-messages.test'
@@ -35,9 +34,6 @@ async function run() {
   console.log('start find rooms test')
   await findRooms()
 
-  console.log('start mark as read test')
-  await markAsRead()
-
   console.log('start create message test')
   await createMessage()
 
@@ -48,4 +44,6 @@ async function run() {
   await findMessages()
 }
 
-run()
+run().catch(e => {
+  console.log(e)
+})
