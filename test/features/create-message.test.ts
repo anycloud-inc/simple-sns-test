@@ -25,7 +25,7 @@ export async function createMessage() {
   assert.equal(
     response.status,
     422,
-    'roomに入ってないユーザーのメッセージを作ろうとしているので、400になるべき'
+    'roomに入ってないユーザーのメッセージを作ろうとしているので、422になるべき'
   )
 }
 
